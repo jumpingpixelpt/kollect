@@ -1,0 +1,33 @@
+/* Faixa de big numbers (components/BigNumbers.js). */
+.faixa {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px;
+  margin: 0;
+}
+.item {
+  display: flex; flex-direction: column; gap: 4px; min-width: 0;
+  padding: 16px 18px; border: 1px solid var(--line); border-radius: 14px;
+  background: linear-gradient(160deg, var(--card), var(--neon-card-tint));
+  box-shadow: inset 0 1px 0 var(--neon-edge);
+}
+.valor {
+  order: 0; margin: 0; font: 700 clamp(22px, 2.4vw, 30px)/1.05 var(--sans);
+  letter-spacing: -.02em; font-variant-numeric: tabular-nums; color: var(--text);
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.label {
+  order: 1; font-size: 10.5px; letter-spacing: .12em; text-transform: uppercase;
+  color: var(--text-faint); line-height: 1.35;
+}
+.sub { order: 2; margin: 0; font-size: 11.5px; color: var(--text-dim); line-height: 1.4; }
+.destaque { border-color: var(--neon-a); box-shadow: 0 0 22px var(--neon-glow-soft), inset 0 1px 0 var(--neon-edge); }
+.destaque .valor {
+  background: var(--neon-grad); -webkit-background-clip: text; background-clip: text; color: transparent;
+  text-shadow: none; filter: drop-shadow(0 0 10px var(--neon-glow));
+}
+.compacto { grid-template-columns: repeat(auto-fit, minmax(118px, 1fr)); gap: 8px; }
+.compacto .item { padding: 10px 12px; border-radius: 11px; }
+.compacto .valor { font-size: clamp(17px, 1.7vw, 21px); }
+.compacto .label { font-size: 9.5px; }
+@media (max-width: 640px) {
+  .faixa { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}

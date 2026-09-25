@@ -1,0 +1,27 @@
+{
+  "regions": [
+    "gru1"
+  ],
+  "crons": [
+    {
+      "path": "/api/cron/discover",
+      "schedule": "0 5 * * *"
+    },
+    {
+      "path": "/api/cron/collect",
+      "schedule": "0 6 * * *"
+    },
+    {
+      "path": "/api/cron/squad-alerts",
+      "schedule": "15 * * * *"
+    },
+    {
+      "path": "/api/cron/deep-scan-lote",
+      "schedule": "*/5 8-11 * * *"
+    },
+    {
+      "path": "/api/cron/radar-cache",
+      "schedule": "*/15 * * * *"
+    }
+  ]
+}

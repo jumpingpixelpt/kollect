@@ -1,0 +1,32 @@
+.workspace { min-width: 0; }
+.tabs { display: flex; gap: 6px; flex-wrap: wrap; border-bottom: 1px solid var(--line); padding-bottom: 10px; margin-bottom: 25px; }
+.tab, .activeTab { appearance: none; border: 1px solid transparent; border-radius: 10px; padding: 12px 16px; background: transparent; color: var(--text-dim); font: inherit; font-size: 13px; line-height: 1.5; cursor: pointer; text-align: left; }
+.activeTab { background: var(--inset); border-color: var(--line-strong); color: var(--gold-bright); font-weight: 600; }
+.tab:hover { background: var(--inset); color: var(--text); }
+.tab:focus-visible, .activeTab:focus-visible, .choices button:focus-visible, .picker input:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+.panel { min-width: 0; }
+.panel[hidden] { display: none; }
+.heading { display: flex; justify-content: space-between; align-items: flex-start; gap: 18px; margin-bottom: 20px; }
+.heading h2 { font-size: 21px; font-weight: 550; line-height: 1.35; letter-spacing: -.025em; }
+.heading p { color: var(--text-dim); font-size: 13px; line-height: 1.6; margin-top: 8px; }
+.heading > button { flex-shrink: 0; }
+.picker { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 24px; margin-bottom: 24px; }
+.picker > label { display: block; font-size: 13px; font-weight: 600; margin-bottom: 10px; }
+.picker > input { width: 100%; max-width: 560px; min-width: 0; background: var(--input-bg, var(--bg-soft)); color: var(--text); border: 1px solid var(--line-strong); border-radius: 9px; font: inherit; font-size: 14px; padding: 13px 14px; }
+.picker > input::placeholder { color: var(--text-faint); }
+.hint, .searchStatus { color: var(--text-faint); font-size: 12px; line-height: 1.6; margin-top: 10px; }
+.searchStatus:empty { display: none; }
+.choices { list-style: none; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; padding: 0; margin: 20px 0 0; }
+.choices:empty { display: none; }
+.choices button { width: 100%; display: flex; align-items: center; gap: 12px; padding: 13px; border: 1px solid var(--line); border-radius: 10px; background: var(--inset); color: var(--text); font: inherit; cursor: pointer; text-align: left; }
+.choices button:hover { border-color: var(--line-strong); background: var(--card-hover); }
+.initial { flex: 0 0 34px; height: 34px; border-radius: 50%; display: grid; place-items: center; background: var(--bg-soft); color: var(--gold); }
+.choiceText { flex: 1; min-width: 0; }
+.choiceText strong, .choiceText > span { display: block; overflow-wrap: anywhere; }
+.choiceText strong { font-size: 12px; font-weight: 550; }
+.choiceText > span { font-size: 11px; color: var(--text-faint); margin-top: 4px; }
+.choices button > span:last-child { color: var(--text-faint); }
+.state { border: 1px solid var(--line); border-radius: 14px; padding: 32px 20px; text-align: center; font-size: 14px; color: var(--text-dim); }
+.state button { margin-top: 14px; }
+@media (max-width: 1100px) { .choices { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 600px) { .tab, .activeTab { padding: 10px 12px; font-size: 12px; } .heading { flex-direction: column; gap: 12px; } .heading h2 { font-size: 19px; } .picker { padding: 17px; } .choices { grid-template-columns: 1fr; } }

@@ -1,0 +1,30 @@
+/* Ficha em rolo (feedback rodada 2, F3.4, set/2026): índice fixo de atalhos e as secções
+   com âncora. Claro e escuro pelos tokens (--neon-*, --line, --card…). */
+.atalhos {
+  position: sticky; top: 0; z-index: 20;
+  display: flex; gap: 6px; flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none;
+  margin: 12px 0 20px; padding: 10px 12px;
+  background: var(--bg); border: 1px solid var(--line); border-radius: 999px;
+  box-shadow: 0 6px 24px var(--neon-glow-soft);
+}
+.atalhos::-webkit-scrollbar { display: none; }
+.atalhos a {
+  flex: 0 0 auto; padding: 7px 14px; border-radius: 999px; font-size: 12.5px; white-space: nowrap;
+  color: var(--text-dim); border: 1px solid transparent; transition: color .15s, border-color .15s, box-shadow .15s;
+}
+.atalhos a:hover, .atalhos a:focus-visible { color: var(--text); border-color: var(--neon-a); box-shadow: 0 0 10px var(--neon-glow-soft); outline: none; }
+
+/* o índice fixo tapava o título da secção ao saltar pela âncora */
+.secao, .ancora { scroll-margin-top: 84px; }
+.secao { margin-top: 36px; min-width: 0; }
+.cabeca { margin-bottom: 16px; }
+.cabeca h2, .analiseTitulo { font-size: 20px; font-weight: 600; letter-spacing: -.02em; line-height: 1.35; }
+.cabeca p { margin-top: 6px; font-size: 12.5px; color: var(--text-faint); line-height: 1.6; }
+.lado { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 22px; align-items: start; }
+.hashtags { min-width: 0; }
+.hashtags > :global(.panel) { margin: 0; }
+.bigNumbers { margin: 16px 0 14px; }
+.analise { margin-top: 48px; padding-top: 28px; border-top: 1px solid var(--line); }
+
+@media (max-width: 1000px) { .lado { grid-template-columns: 1fr; } }
+@media (max-width: 520px) { .atalhos { border-radius: 14px; } }

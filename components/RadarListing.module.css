@@ -1,0 +1,21 @@
+/* Tabela do Creators Hub (feedback rodada 2, F3.1, set/2026) — complementa .rl-table do
+   globals.css: linha clicável, selo de Tier e a seta de linha no fim. Claro e escuro pelos
+   tokens (--neon-*, --line, --text…), sem cores fixas. */
+.tabela { min-width: 880px; }
+.linha { cursor: pointer; }
+.linha:hover td:first-child { box-shadow: inset 3px 0 0 var(--neon-a); }
+.topic { max-width: 180px; overflow: hidden; text-overflow: ellipsis; }
+/* nomes longos ("Naturalmente Pri | Especialista em…") alargavam a coluna e empurravam
+   Tags e a seta para fora do ecrã: o nome corta com reticências, o completo fica no title */
+.creatorCel { max-width: 260px; }
+.creatorCel :global(.rl-nmwrap) { min-width: 0; overflow: hidden; }
+.creatorCel :global(.rl-nm), .creatorCel :global(.rl-hd) { display: block; overflow: hidden; text-overflow: ellipsis; }
+.tabela :global(td), .tabela :global(th) { padding-left: 10px; padding-right: 10px; }
+.setaCel { width: 1%; text-align: right; }
+.tier {
+  display: inline-block; padding: 3px 10px; border-radius: 999px; font-size: 11px; font-weight: 600;
+  letter-spacing: .03em; border: 1px solid var(--line-strong); color: var(--text); background: var(--neon-card-tint, transparent);
+}
+.tier_mid, .tier_macro { border-color: var(--neon-b); }
+.tier_mega { border-color: var(--neon-a); box-shadow: 0 0 10px var(--neon-glow-soft); }
+.srOnly { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }

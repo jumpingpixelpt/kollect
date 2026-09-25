@@ -1,0 +1,17 @@
+node_modules/
+.next/
+.env*.local
+.vercel
+
+# backup pontual da recategorização de 29/07/2026 (rollback manual)
+.categoria-backup-*.json
+
+# internos fora da cópia pública
+dist/
+docs/
+CLAUDE.md
+AGENTS.md
+.claude/
+.codex/
+.mcp.json
+.DS_Store

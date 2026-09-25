@@ -1,0 +1,107 @@
+/* Camada "neon" — feedback rodada 2 (set/2026): "mais neon, mais tecnológico, sensação de
+   estar navegando numa Siri". Vive por cima de globals.css (importada depois, em
+   app/layout.js) para não reescrever as 1.700 linhas de lá: acrescenta tokens --neon-*,
+   o fundo de partículas e brilhos nos pontos de foco (nav ativa, cards, botões, números).
+   Mesma regra de temas de globals.css: o claro é :root sem condição, o escuro troca em
+   html[data-theme="dark"]. */
+:root {
+  --neon-a: #7c4dff;          /* violeta elétrico */
+  --neon-b: #00b8e6;          /* ciano */
+  --neon-c: #d63cff;          /* magenta */
+  --neon-grad: linear-gradient(100deg, #8a2cff, #4a5bff 45%, #00b8e6);
+  --neon-glow: rgba(124,77,255,.28);
+  --neon-glow-soft: rgba(124,77,255,.10);
+  --neon-ring: rgba(124,77,255,.16);
+  --neon-inset: rgba(124,77,255,.03);
+  --neon-edge: rgba(255,255,255,.7);
+  --neon-card-tint: rgba(124,77,255,.035);
+  /* claro (feedback 22/09): o movimento mal se via — pontos mais escuros, maiores e fios
+     mais marcados, e um pouco mais de velocidade para o deslocamento se notar */
+  --particle: 84,56,220;
+  --particle-line: 60,90,220;
+  --particle-alpha: 1.35;
+  --particle-line-alpha: .42;
+  --particle-size: 1.35;
+  --particle-speed: 1.6;
+}
+html[data-theme="dark"] {
+  --bg: #030615; --bg-soft: #070d22; --side-bg: #040819;
+  --card: #081028; --card-hover: #0d1836;
+  --neon-a: #9d7bff;
+  --neon-b: #2ee6ff;
+  --neon-c: #ff4fe0;
+  --neon-grad: linear-gradient(100deg, #b26bff, #6d7dff 45%, #2ee6ff);
+  --neon-glow: rgba(125,95,255,.55);
+  --neon-glow-soft: rgba(90,120,255,.18);
+  --neon-ring: rgba(125,95,255,.28);
+  --neon-inset: rgba(46,230,255,.035);
+  --neon-edge: rgba(160,180,255,.08);
+  --neon-card-tint: rgba(46,120,255,.06);
+  --particle: 120,200,255;
+  --particle-line: 130,120,255;
+  /* escuro: "um bocadinho mais de movimento, não muito mais" (22/09) */
+  --particle-alpha: 1;
+  --particle-line-alpha: .22;
+  --particle-size: 1;
+  --particle-speed: 1.35;
+}
+
+/* ── Fundo: partículas (components/FundoParticulas.js) por cima dos brilhos do backdrop;
+   a grelha em movimento sai — as bolinhas são o movimento agora. ── */
+.fundo-particulas { position: fixed; inset: 0; z-index: -1; pointer-events: none; opacity: 1; }
+html[data-theme="dark"] .fundo-particulas { opacity: 1; }
+.app-backdrop::after { display: none; }
+html[data-theme="dark"] .app-backdrop::before {
+  opacity: 1;
+  background:
+    radial-gradient(ellipse at 80% 12%, rgba(125,80,255,.18), transparent 42%),
+    radial-gradient(ellipse at 18% 88%, rgba(46,200,255,.12), transparent 40%),
+    radial-gradient(ellipse at 50% 50%, rgba(214,60,255,.05), transparent 60%);
+}
+
+/* ── Navegação: item ativo com fio de luz ── */
+.side .nav-item.on {
+  border-color: var(--neon-ring);
+  background: linear-gradient(100deg, var(--neon-glow-soft), transparent 80%);
+  box-shadow: inset 2px 0 0 var(--neon-a), 0 0 18px var(--neon-glow-soft);
+  color: var(--text);
+}
+.side .nav-item.on .glyph { color: var(--neon-a); filter: drop-shadow(0 0 6px var(--neon-glow)); }
+html[data-theme="dark"] .side { background: rgba(4,8,25,.82); backdrop-filter: blur(10px); }
+
+/* ── Títulos: gradiente neon no destaque ── */
+html[data-theme="dark"] .busca-head h1,
+html[data-theme="dark"] .squad-title h1 { text-shadow: 0 0 28px rgba(125,95,255,.25); }
+
+/* ── Botões principais: brilho ── */
+.gold-btn, .bc-btn, .match-submit, .psearch-btn { box-shadow: 0 0 16px var(--neon-glow-soft); }
+.gold-btn:hover, .bc-btn:hover, .match-submit:hover, .psearch-btn:hover { box-shadow: 0 0 22px var(--neon-glow); }
+
+/* ── Cápsula da Busca: é a referência da BarraBusca ── */
+.match-input-shell { box-shadow: 0 0 32px var(--neon-glow-soft), inset 0 0 18px var(--neon-inset); }
+.match-input-shell:focus-within { border-color: var(--neon-a); box-shadow: 0 0 0 3px var(--neon-ring), 0 0 40px var(--neon-glow); }
+
+/* ── Superfícies: vidro escuro com aresta de luz no tema escuro ── */
+html[data-theme="dark"] :is(.card, .panel, .match-options, .briefing-box) {
+  background: linear-gradient(160deg, rgba(10,20,48,.86), rgba(8,14,36,.78));
+  border-color: rgba(125,140,255,.16);
+  box-shadow: inset 0 1px 0 rgba(160,180,255,.06), 0 10px 40px rgba(0,0,0,.35);
+}
+
+/* ── Marcação de campos opcionais (L6): rótulo por extenso, não asterisco ── */
+.opcional { font-weight: 400; font-size: .9em; color: var(--text-faint); letter-spacing: 0; text-transform: none; margin-left: 4px; }
+
+/* ── Seta de linha (Hub, Creators, Histórico) ── */
+.seta-linha {
+  display: inline-grid; place-items: center; width: 34px; height: 34px; flex: 0 0 34px;
+  border: 1px solid var(--line-strong); border-radius: 50%; color: var(--neon-a);
+  transition: box-shadow .15s, background .15s, transform .15s;
+}
+.seta-linha:hover { background: var(--neon-glow-soft); box-shadow: 0 0 14px var(--neon-glow); transform: translateX(2px); }
+.seta-linha svg { width: 16px; height: 16px; }
+
+/* ── Histórico recente da Busca: números grandes nos cartões (L5) ── */
+.brief-nums { display: flex; gap: 18px; margin-top: 10px; }
+.brief-nums span { display: flex; flex-direction: column; font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: var(--text-faint); }
+.brief-nums b { font-size: 22px; font-weight: 700; letter-spacing: -.02em; color: var(--text); font-variant-numeric: tabular-nums; text-transform: none; line-height: 1.1; }
+.brief-card:hover { border-color: var(--neon-a); box-shadow: 0 0 22px var(--neon-glow-soft); }

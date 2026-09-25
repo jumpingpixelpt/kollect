@@ -1,0 +1,48 @@
+/* Barra de busca única (components/BarraBusca.js) — a cápsula da Busca, em todas as páginas. */
+.barra { width: 100%; }
+.shell {
+  position: relative; display: flex; align-items: center; gap: 10px;
+  min-height: 56px; padding: 6px 6px 6px 20px;
+  border: 1px solid var(--line-strong); border-radius: 999px;
+  background: var(--card);
+  box-shadow: 0 0 0 1px transparent, 0 0 28px var(--neon-glow-soft), inset 0 0 18px var(--neon-inset);
+  transition: box-shadow .2s, border-color .2s;
+}
+.shell:focus-within {
+  border-color: var(--neon-a);
+  box-shadow: 0 0 0 3px var(--neon-ring), 0 0 36px var(--neon-glow);
+}
+.lupa { display: flex; color: var(--neon-a); flex: 0 0 auto; }
+.lupa svg { width: 20px; height: 20px; }
+.input {
+  flex: 1 1 auto; min-width: 0; border: 0; outline: none; background: transparent;
+  color: var(--text); font: 400 15px/1.4 var(--sans); padding: 10px 0;
+}
+.input::placeholder { color: var(--text-faint); }
+.input::-webkit-search-cancel-button { display: none; }
+.limpar {
+  border: 0; background: transparent; color: var(--text-faint); font-size: 22px; line-height: 1;
+  cursor: pointer; padding: 0 6px;
+}
+.limpar:hover { color: var(--text); }
+.busy {
+  width: 16px; height: 16px; flex: 0 0 16px; border-radius: 50%;
+  border: 2px solid var(--track); border-top-color: var(--neon-a);
+  animation: girar .8s linear infinite;
+}
+@keyframes girar { to { transform: rotate(360deg); } }
+.botao {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  min-height: 44px; padding: 0 22px; border: 0; border-radius: 999px;
+  background: var(--gold-grad); color: #fff; cursor: pointer; white-space: nowrap;
+  font: 700 13px var(--sans); letter-spacing: .04em;
+  box-shadow: 0 0 18px var(--neon-glow);
+}
+.botao:hover { filter: brightness(1.1); }
+.botao svg { width: 16px; height: 16px; }
+@media (max-width: 640px) {
+  .shell { padding-left: 14px; gap: 6px; }
+  .botao { padding: 0 14px; }
+  .botao span { display: none; }
+}
+@media (prefers-reduced-motion: reduce) { .busy { animation: none; } }
